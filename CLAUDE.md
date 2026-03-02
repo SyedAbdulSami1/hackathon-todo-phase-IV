@@ -1,4 +1,4 @@
-# Frontend Guidelines
+﻿# Frontend Guidelines
  
 ## Stack
 - Next.js 14 (App Router)

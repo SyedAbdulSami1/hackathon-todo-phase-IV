@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "vercel-todo-server": {
+      "command": "http",
+      "url": "https://your-project.vercel.app/api/mcp"
+    }
+  }
+}

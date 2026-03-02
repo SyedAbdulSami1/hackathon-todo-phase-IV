@@ -15,7 +15,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 try:
-    from routers import auth, tasks, chat
+    from routers import auth, tasks, chat, mcp
     from db import create_db_and_tables
     from agents.factory import AgentFactory
 except ImportError as e:
@@ -74,6 +74,7 @@ app.add_middleware(
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(tasks.router, prefix="/api/tasks", tags=["tasks"])
 app.include_router(chat.router, prefix="/api", tags=["chat"])
+app.include_router(mcp.router, prefix="/api", tags=["mcp"])
 
 @app.get("/")
 async def root():

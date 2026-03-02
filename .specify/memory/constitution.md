@@ -1,7 +1,7 @@
 <!-- Sync Impact Report
-Version change: 1.0.0 → 1.1.0
-List of modified principles: Strict Spec-Driven Development → Strict Spec-Driven Development (Preserved Phase I & II Architecture)
-Added sections: AI Chatbot Isolated Feature Module, Statelessness with Persistent Storage, Vercel-Safe Deployment
+Version change: 1.1.0 → 1.2.0
+List of modified principles: None
+Added sections: Local Kubernetes Containerization, AI-Powered AIOps Integration, Helm Chart Deployment Strategy
 Removed sections: None
 Templates requiring updates:
 - ✅ .specify/templates/plan-template.md
@@ -12,7 +12,7 @@ Follow-up TODOs:
 - TODO(RATIFICATION_DATE): Original ratification date is unknown.
 -->
 
-# Hackathon II – Evolution of Todo – Phase III AI Chatbot Integration Constitution
+# Hackathon II – Evolution of Todo – Phase IV Local Kubernetes Deployment Constitution
 
 ## Core Principles
 
@@ -43,16 +43,25 @@ Backend services must remain stateless, with all persistent state stored in Neon
 ### Vercel-Safe Deployment
 All code changes must be compatible with Vercel deployment platform. No server-specific functionality or file system dependencies that would break Vercel deployment. Environment variables and build configurations must work seamlessly with Vercel's deployment pipeline.
 
+### Local Kubernetes Containerization
+All components (frontend Next.js, Python FastAPI backend, database) must be containerized using Docker. Container images must be optimized for size and include multi-stage builds. Dockerfiles must follow security best practices and be compatible with local Kubernetes environments (Minikube).
+
+### Helm Chart Deployment Strategy
+All deployments must be managed through Helm 3 charts with proper configuration management. Charts must support environment-specific values, resource limits, health checks, and rolling updates. Helm releases must be atomic and support rollback capabilities.
+
+### AI-Powered AIOps Integration
+Kubernetes operations must leverage AI tools for deployment, scaling, and debugging. Use kubectl-ai and kagent for natural language commands (e.g., "deploy frontend with 2 replicas"). Implement observability with AI-assisted monitoring and automated alerting for common failure patterns.
+
 ## Key Standards
 
 All API endpoints must require a valid JWT. Every task and data record must be filtered by the authenticated `user_id`. Use SQLModel with Neon PostgreSQL for the database. The frontend will use Next.js App Router with Server Components as the default. Tailwind CSS will be used for all styling. AI Chatbot features must integrate seamlessly with existing authentication and data isolation patterns.
 
 ## Constraints
 
-No new technologies outside the specified stack. The application must support multiple users from day one. CORS must be properly configured for inter-service communication. No breaking changes to existing API endpoints. Database schema changes must be additive only. Server statelessness must be maintained.
+No new technologies outside the specified stack (Docker, Kubernetes, Helm, kubectl-ai, kagent). The application must support multiple users from day one. CORS must be properly configured for inter-service communication. No breaking changes to existing API endpoints. Database schema changes must be additive only. Server statelessness must be maintained. All components must be containerized and deployable on local Kubernetes cluster.
 
 ## Development Workflow
 
-Amendments to this constitution require a documented proposal, a review of impact on dependent artifacts, and approval by the project lead. Versioning follows Semantic Versioning rules (MAJOR.MINOR.PATCH). Compliance will be reviewed during integration testing phases. All changes must preserve Phase I & II functionality while adding AI Chatbot features in isolation.
+Amendments to this constitution require a documented proposal, a review of impact on dependent artifacts, and approval by the project lead. Versioning follows Semantic Versioning rules (MAJOR.MINOR.PATCH). Compliance will be reviewed during integration testing phases. All changes must preserve Phase I, II, and III functionality while adding Kubernetes deployment capabilities. Containerization and AI-powered operations must not break existing features or authentication mechanisms.
 
-**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE): Original ratification date is unknown. | **Last Amended**: 2026-02-22
+**Version**: 1.2.0 | **Ratified**: TODO(RATIFICATION_DATE): Original ratification date is unknown. | **Last Amended**: 2026-03-02
