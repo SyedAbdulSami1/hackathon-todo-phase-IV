@@ -1,56 +1,46 @@
-# PROJECT_CONTEXT.md
+# PROJECT_CONTEXT.md – Hackathon II (Phase IV)
 
-## Project
-Todo App – Hackathon II (Spec-Driven Development)
+## CURRENT_STATUS
+- **Phase:** IV (Local Kubernetes Deployment)
+- **Completed:** I (Console), II (Web), III (Chatbot)
+- **Goal:** Deploy Phase III on Minikube using Helm & Docker.
 
-## Current Phase
-CURRENT_PHASE: IV – Local Kubernetes Deployment
-COMPLETED_PHASES: I (Console App), II (Full-Stack Web), III (AI Chatbot)
+## ARCHITECTURE (DO NOT CHANGE)
+- **Frontend:** Next.js 16+ (Phase II/III)
+- **Backend:** FastAPI + OpenAI Agents SDK (Phase III)
+- **DB:** Neon PostgreSQL
+- **Infra:** Docker, Minikube, Helm, kubectl-ai
 
-## Phase IV Goal
-Deploy Phase III chatbot on local Kubernetes using:
-- Docker Desktop + Minikube
-- Helm charts
-- kubectl-ai / kagent for AIOps
+## FILE STRUCTURE (SOURCE OF TRUTH)
+- `/frontend` → Next.js app
+- `/backend` → FastAPI app
+- `/specs` → All spec files (SDD Required)
+- `/helm` → Helm charts (todo-app)
+- `/k8s` → Raw manifests (namespace, ingress, deployments, services, secrets, PV/PVC)
+- `/docs` → k8s/README.md (Setup instructions)
+- `/history` → Prompt logs & Iterations
 
-## Architecture (Do NOT change)
-- Frontend: Next.js (from Phase II/III)
-- Backend: FastAPI (from Phase II/III)
-- AI: OpenAI Agents SDK + MCP tools (from Phase III)
-- DB: Neon PostgreSQL
-- Chat: OpenAI ChatKit
+## TASK TRACKER (Phase IV)
+- [x] Dockerfile (Backend/Frontend)
+- [x] Helm Charts (Backend/Frontend)
+- [x] K8s Manifests (Deployments, Services, Secrets)
+- [x] Documentation (k8s/README.md)
+- [ ] **Task: Final Deployment Validation & Pytest**
 
-## Important Files
-- /frontend → Next.js app
-- /backend → FastAPI app
-- /specs → All spec files
-- /HISTORY.md → Change log
-- /QWEN.md → Qwen instructions
+## ACTIVE TASK
+**Validate Deployment & Run Pytest**
+1. Ensure cluster is running (Minikube).
+2. Run backend pytest suite.
+3. Save report to `/reports/pytest-phase4.xml`.
+4. Verify Helm release status.
 
-## Phase IV Tasks (micro tasks)
-- [X] Task 1: Write Dockerfile for backend (already exists)
-- [X] Task 2: Write Dockerfile for frontend (already exists)
-- [X] Task 3: Write Helm chart for backend deployment (helm/todo-app exists)
-- [X] Task 4: Write Helm chart for frontend deployment (helm/todo-app exists)
-- [X] Task 5: Write Minikube setup instructions (k8s/README.md)
-- [ ] Task 6: Test deploy on local cluster
+## POST-PHASE RULES (CRITICAL)
+1. **Pytest Requirement:** After Phase IV completion, MUST run `pytest` on backend.
+2. **Report Saving:** Save test report in `/reports` folder for teacher proof.
+3. **No Manual Code:** All fixes must be spec-driven.
+4. **AIOps:** Use `kubectl-ai` or `kagent` for cluster checks.
 
-## Active Task
-Task 6: Test deploy on local cluster
-
-## Completed Tasks (Phase IV)
-- Kubernetes manifests created in k8s/ directory:
-  - namespace.yaml, ingress.yaml
-  - frontend/deployment.yaml, frontend/service.yaml
-  - backend/deployment.yaml, backend/service.yaml, backend/secret.yaml
-  - database/persistent-volume.yaml, database/persistent-volume-claim.yaml, database/secret.yaml
-- Deployment documentation: k8s/README.md
-- PHR created: history/prompts/kubernetes-deployment/014-kubernetes-manifests-implementation.green.prompt.md
-
-## Completed Tasks
-(Phase I, II, III all complete – see HISTORY.md)
-
-## Notes
-- No manual coding – specs first, then AI generates code
-- Use kubectl-ai for deploy/scale/debug commands
-- Free tools only (no paid services)
+## NOTES FOR AI
+- Trust this file over scanning directory.
+- Do not recreate existing files (check list above).
+- Focus on **Deployment Stability** and **Testing Proof**.
