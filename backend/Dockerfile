@@ -1,5 +1,5 @@
 # Stage 1: Dependencies
-FROM python:3.9-slim AS deps
+FROM python:3.10-slim AS deps
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --user -r requirements.txt
 
 # Stage 2: Application
-FROM python:3.9-slim AS runner
+FROM python:3.10-slim AS runner
 
 WORKDIR /app
 

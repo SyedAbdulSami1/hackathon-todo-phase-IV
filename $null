@@ -1,4 +1,8 @@
 The filename, directory name, or volume label syntax is incorrect.
-Error occurred while processing: \d:\D Data\Hackthon-Second\hackathon-todo-phase-IV\history\prompts\kubernetes-deployment\.
-A subdirectory or file echo already exists.
-Error occurred while processing: echo.
+Error occurred while processing: ($?).
+A subdirectory or file { already exists.
+Error occurred while processing: {.
+A subdirectory or file Write-Host already exists.
+Error occurred while processing: Write-Host.
+A subdirectory or file } already exists.
+Error occurred while processing: }.
