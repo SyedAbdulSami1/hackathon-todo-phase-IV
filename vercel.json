@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm run build",
-  "installCommand": "cd frontend && npm install",
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "backend/index.py"
+      "destination": "/api/$1"
     }
   ]
 }
