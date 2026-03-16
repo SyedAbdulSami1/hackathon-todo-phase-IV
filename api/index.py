@@ -1,8 +1,12 @@
 import os
 import sys
 
+# Get the absolute path of the current directory (api/)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Get the project root directory
+root_dir = os.path.dirname(current_dir)
+
 # Add the project root to sys.path so we can import 'backend'
-root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if root_dir not in sys.path:
     sys.path.insert(0, root_dir)
 
@@ -15,10 +19,9 @@ if backend_dir not in sys.path:
 try:
     from backend.index import app
 except ImportError as e:
-    # Fallback for different Vercel structure
-    try:
-        from index import app
-    except ImportError:
-        raise e
+    print(f"Import error: {e}")
+    # Fallback if Vercel changes the structure
+    sys.path.append(os.path.join(root_dir, 'backend'))
+    from index import app
 
 # This exposes the FastAPI app to Vercel
