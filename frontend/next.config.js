@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    distDir: '../.next',
     images: {
         domains: ['api.dicebear.com', 'yt3.googleusercontent.com'],
     },

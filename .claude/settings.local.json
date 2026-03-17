@@ -18,7 +18,11 @@
       "Bash(.specify/scripts/powershell/setup-plan.ps1:*)",
       "Bash(.specify/scripts/powershell/check-prerequisites.ps1:*)",
       "Bash(powershell.exe:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(vercel login)",
+      "mcp__Neon__get_database_tables",
+      "mcp__Neon__describe_branch",
+      "mcp__Neon__run_sql"
     ]
   }
 }
