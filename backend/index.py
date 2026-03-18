@@ -70,11 +70,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers
+# Include routers with /api prefix (for localhost and some Vercel configs)
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(tasks.router, prefix="/api/tasks", tags=["tasks"])
 app.include_router(chat.router, prefix="/api", tags=["chat"])
 app.include_router(mcp.router, prefix="/api", tags=["mcp"])
+
+# Include routers WITHOUT /api prefix (for Vercel when it strips the prefix)
+app.include_router(auth.router, prefix="/auth", tags=["auth"])
+app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
+app.include_router(chat.router, tags=["chat"])  # chat router has its own paths
+app.include_router(mcp.router, tags=["mcp"])    # mcp router has its own paths
 
 @app.get("/")
 async def root():
@@ -94,7 +100,19 @@ async def debug_env():
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy"}
+    return {"status": "healthy", "service": "todo-api"}
+
+@app.get("/api/health")
+async def api_health_check():
+    return {"status": "healthy", "service": "todo-api", "prefix": "/api"}
+
+@app.api_route("/api/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"])
+async def catch_all_api(path: str):
+    return {
+        "message": "API path matched in catch-all",
+        "path": path,
+        "base_url": "https://hackathon-todo-phase-iv.vercel.app"
+    }
 
 # Add a way to access the agent globally if needed
 def get_chat_agent():
