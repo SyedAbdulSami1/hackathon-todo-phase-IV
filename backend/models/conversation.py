@@ -17,7 +17,7 @@ class Conversation(SQLModel, table=True):
     """Represents a single chat session between a user and the AI assistant."""
 
     id: UUID = Field(default_factory=uuid4, primary_key=True)
-    user_id: str = Field(index=True, nullable=False)  # Foreign key to user
+    user_id: int = Field(foreign_key="users.id", index=True, nullable=False)  # Foreign key to user
     title: Optional[str] = Field(default=None, max_length=200)  # Optional conversation title
     created_at: datetime = Field(
         default_factory=datetime.utcnow,
