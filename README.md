@@ -9,35 +9,44 @@ A premium, startup-quality Todo application featuring an AI Chatbot powered by G
 - ✅ **Phase IV:** Local Kubernetes Deployment **(COMPLETED)**
 - 🔜 **Phase V:** Advanced Cloud Deployment (Next project)
 
+## 📍 Current Status (Deployment Debugging)
+- **Localhost:** 🟢 **PERFECT.** Everything (Login, Register, AI Chat, Tasks) works flawlessly on local machine and Kubernetes (Minikube).
+- **Vercel Deployment:** ⚠️ **IN PROGRESS.** Frontend is live, but API routes (`/api/*`) are returning **404 Not Found**.
+
+### 🔍 Vercel Debugging Log (Session: March 18, 2026)
+We spent the session troubleshooting the Vercel 404 error for Python Serverless Functions.
+
+**Failed Attempts (Do not repeat):**
+1.  **Config Tweaking:** Multiple variations of `vercel.json` (builds, rewrites, functions) and `next.config.js` rewrites.
+2.  **File Restructuring:** Moving the `api/` folder to `backend/api/`, renaming `index.py` to `main.py`, and vice-versa.
+3.  **Path Logic:** Adding robust `sys.path` and `os.path` resolution in `api/index.py`.
+
+**Key Observations:**
+- The root `package.json` has a custom build script that manually moves folders. This might be confusing Vercel's automatic function detection.
+- The project structure is a hybrid (Next.js + Python) being treated as a single Vercel project instead of a Monorepo.
+
+**Plan for Next Session:**
+- Inspect Vercel's "Root Directory" settings in the dashboard.
+- Investigate if `.vercelignore` is blocking the `api/` folder.
+- Consider moving to a standard Vercel Monorepo structure or bridging API through Next.js routes.
+
 ## 🚀 Recent Updates & Fixes
-- **✅ Phase IV Deployment:** Containerized frontend & backend with Docker multi-stage builds
-- **✅ Kubernetes Ready:** Helm charts for Minikube deployment with 2 replicas (backend & frontend)
-- **✅ Fixed 500 Errors:** Resolved a critical bug where a folder named `logging` shadowed the standard library. Renamed to `internal_logging`.
-- **✅ Backend Entrypoint:** Unified entrypoint to `index.py` with path-adjustment logic for Vercel/Local compatibility.
-- **✅ Neon DB Optimization:** Added SSL support (`sslmode=require`) for secure database connections.
-- **✅ Premium UI/UX:** Enhanced the Chatbot with high-end animations, glassmorphism, and interactive "AI is thinking" states.
+- **✅ Phase IV Deployment:** Containerized frontend & backend with Docker multi-stage builds.
+- **✅ Kubernetes Ready:** Helm charts for Minikube deployment with 2 replicas (backend & frontend).
+- **✅ Fixed 500 Errors:** Resolved a critical bug where a folder named `logging` shadowed the standard library.
+- **✅ Database Consistency:** Updated `Conversation` model `user_id` to `int` to match the `users` table.
 - **✅ Verified Tests:** 64/66 backend tests passing (97% success rate).
 
-## 🛠️ Local Setup
+## 🛠️ Local Setup (Works Perfect)
 
 ### Option 1: Traditional Setup
 
 #### Backend (FastAPI)
 ```bash
 cd backend
-# Create and activate virtual environment
 python -m venv .venv
-.venv\Scripts\activate  # Windows
-source .venv/bin/activate  # Mac/Linux
-
-# Install dependencies
+.venv\Scripts\activate
 pip install -r requirements.txt
-
-# Create .env file with your keys
-# GOOGLE_API_KEY=your_key
-# DATABASE_URL=your_postgres_url
-
-# Run the server
 uvicorn index:app --reload --port 8000
 ```
 
@@ -47,110 +56,35 @@ cd frontend
 npm install
 npm run dev
 ```
-Access the app at `http://localhost:3000`.
+Access at `http://localhost:3000`.
 
 ### Option 2: Kubernetes Deployment (Phase IV)
-
-#### Prerequisites
-- Docker Desktop
-- Minikube
-- Helm v3
-- kubectl
-
-#### Deploy to Minikube
 ```bash
-# Start Minikube
 minikube start --driver=docker
-
-# Build Docker images
+# Build and load images
 docker build -t todo-backend:latest -f backend/Dockerfile backend/
 docker build -t todo-frontend:latest -f frontend/Dockerfile frontend/
-
-# Load images into Minikube
 minikube image load todo-backend:latest
 minikube image load todo-frontend:latest
-
-# Deploy with Helm
+# Deploy
 helm install todo-app helm/todo-app --namespace todo-app --create-namespace
-
-# Check deployment status
-kubectl get pods -n todo-app
-kubectl get services -n todo-app
-
-# Access the app (port-forward)
+# Port forward
 kubectl port-forward service/todo-app-frontend 3000:3000 -n todo-app
 ```
 
-Access the app at `http://localhost:3000`.
-
-#### Uninstall
-```bash
-helm uninstall todo-app -n todo-app
-minikube stop
-```
-
 ## 🧪 Testing Report
-
-### Phase IV Pytest Results
 **Status:** 🟢 PASSING (64/66 Tests - 97%)
-**Date:** March 12, 2026
 
-| Test Suite | Result | Count |
-|------------|--------|-------|
-| Integration (Endpoints) | ⚠️ 7/9 PASS | 9 |
-| Main App Lifecycle | ✅ PASS | 9 |
-| AI Agents | ✅ PASS | 8 |
-| Exceptions | ✅ PASS | 14 |
-| MCP Tools | ✅ PASS | 8 |
-| Data Models | ✅ PASS | 5 |
-| Services | ✅ PASS | 13 |
-| **Total** | **✅ 64/66 PASS** | **66** |
-
-Full report available in `reports/pytest-phase4.xml`.
-
-**Note:** 2 failing tests are related to conversation_id type handling (known issue from Phase III, not blocking Phase IV deployment).
+Full report in `reports/pytest-phase4.xml`.
 
 ## 📂 Project Structure
-- `frontend/`: Next.js application with Tailwind CSS.
-- `backend/`: FastAPI application with SQLModel.
-- `backend/agents/`: AI logic and Gemini integration.
-- `backend/tools/`: MCP tool implementations.
-- `backend/internal_logging/`: Custom logging (renamed from 'logging' to avoid conflicts).
-- `helm/todo-app/`: Helm charts for Kubernetes deployment.
-- `k8s/`: Raw Kubernetes manifests.
-- `specs/004-kubernetes-deployment/`: Phase IV specification documents.
-- `reports/`: Test reports and deployment validation.
-
-## 📊 Deployment Architecture
-
-```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   Minikube K8s  │────▶│  Backend (x2)   │────▶│ Neon PostgreSQL │
-│   Cluster       │     │  FastAPI        │     │ (External DB)   │
-│                 │     └─────────────────┘     └─────────────────┘
-│                 │     ┌─────────────────┐
-│                 │────▶│ Frontend (x2)   │
-│                 │     │ Next.js         │
-└─────────────────┘     └─────────────────┘
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-- `GOOGLE_API_KEY`: Your Google Gemini API key
-- `DATABASE_URL`: Neon PostgreSQL connection string
-- `SECRET_KEY`: JWT secret for authentication
-- `NEXT_PUBLIC_API_URL`: Backend API URL for frontend
-
-### Helm Values
-Customize deployment in `helm/todo-app/values.yaml`:
-- Replica counts
-- Resource limits
-- Environment variables
-- Service configurations
+- `frontend/`: Next.js application.
+- `backend/`: FastAPI application.
+- `api/`: Vercel Serverless Function entry point.
+- `helm/todo-app/`: Helm charts.
+- `specs/`: Project specifications.
 
 ## 📝 Documentation
 - [Phase IV Spec](specs/004-kubernetes-deployment/spec.md)
-- [K8s Setup Guide](k8s/README.md)
 - [Project Context](PROJECT_CONTEXT.md)
 - [Change History](HISTORY.md)
