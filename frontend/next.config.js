@@ -10,6 +10,14 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
+    async rewrites() {
+        return [
+            {
+                source: '/api/:path*',
+                destination: '/api/index.py',
+            },
+        ]
+    },
 }
 
 module.exports = nextConfig

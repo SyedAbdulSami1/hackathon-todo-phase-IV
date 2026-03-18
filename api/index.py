@@ -2,7 +2,7 @@ import os
 import sys
 
 # Add project root to path
-# __file__ is /var/task/api/main.py on Vercel
+# __file__ is /var/task/api/index.py on Vercel
 api_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(api_dir)
 
@@ -19,12 +19,12 @@ try:
     from backend.index import app
 except ImportError as e:
     print(f"IMPORT ERROR: {e}")
-    # Fallback to try relative import if needed
+    # Try relative if absolute fails
     try:
-        from ..backend.index import app
+        sys.path.append(os.path.join(root_dir))
+        from backend.index import app
     except:
         raise e
 
 # Vercel's Python builder looks for 'app' by default
-# but we can explicitly expose it here
 app = app
