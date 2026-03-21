@@ -56,12 +56,12 @@ def authenticate_user(session: Session, username: str, password: str) -> User:
         user = session.exec(statement).first()
         if not user:
             print(f"DEBUG: User {username} not found")
-            raise HTTPException(status_code=404, detail="User not found")
+            raise HTTPException(status_code=401, detail="Invalid username or password")
             
         print(f"DEBUG: User {username} found, verifying password...")
         if not verify_password(password, user.hashed_password):
             print(f"DEBUG: Password verification failed for {username}")
-            raise HTTPException(status_code=401, detail="Incorrect password")
+            raise HTTPException(status_code=401, detail="Invalid username or password")
             
         print(f"DEBUG: Authentication successful for {username}")
         return user
