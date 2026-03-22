@@ -176,12 +176,12 @@ const ChatKitWrapper: React.FC = () => {
       <div className={`flex flex-col bg-slate-50/50 border-r border-slate-200/60 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'w-72' : 'w-0'}`}>
         <div className="p-6 border-b border-slate-200/60 flex items-center justify-between bg-white/50">
           <h3 className="text-sm font-bold text-slate-900 tracking-tight flex items-center">
-            <Clock className="w-4 h-4 mr-2 text-blue-500" />
+            <Clock className="w-4 h-4 mr-2 text-indigo-500" />
             Recent Chats
           </h3>
           <button 
             onClick={startNewConversation}
-            className="p-1.5 hover:bg-white hover:shadow-sm rounded-lg transition-all text-blue-600"
+            className="p-1.5 hover:bg-white hover:shadow-sm rounded-lg transition-all text-indigo-600"
           >
             <PlusCircle className="w-5 h-5" />
           </button>
@@ -207,7 +207,7 @@ const ChatKitWrapper: React.FC = () => {
                 }`}
               >
                 <div className={`w-2 h-2 rounded-full transition-all ${
-                  state.currentConversationId === conv.id ? 'bg-blue-500 scale-125' : 'bg-slate-300 group-hover:bg-slate-400'
+                  state.currentConversationId === conv.id ? 'bg-indigo-500 scale-125' : 'bg-slate-300 group-hover:bg-slate-400'
                 }`} />
                 <div className="flex-1 min-w-0">
                   <p className={`text-sm font-semibold truncate ${
@@ -220,7 +220,7 @@ const ChatKitWrapper: React.FC = () => {
                   </p>
                 </div>
                 <ChevronRight className={`w-4 h-4 transition-all ${
-                  state.currentConversationId === conv.id ? 'text-blue-500 opacity-100' : 'text-slate-300 opacity-0 group-hover:opacity-100'
+                  state.currentConversationId === conv.id ? 'text-indigo-500 opacity-100' : 'text-slate-300 opacity-0 group-hover:opacity-100'
                 }`} />
               </button>
             ))
@@ -240,11 +240,11 @@ const ChatKitWrapper: React.FC = () => {
               <MoreVertical className="w-5 h-5" />
             </button>
             <div className="flex items-center">
-              <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200 ring-4 ring-blue-50">
+              <div className="w-9 h-9 bg-[#1D1D1F] rounded-xl flex items-center justify-center shadow-lg shadow-indigo-100 ring-4 ring-indigo-50">
                 <Bot className="text-white w-5 h-5" />
               </div>
               <div className="ml-3">
-                <h2 className="text-sm font-bold text-slate-900 leading-none">AI Agent</h2>
+                <h2 className="text-sm font-bold text-slate-900 leading-none">Syncron<span className="text-indigo-600">AI</span> Assistant</h2>
                 <div className="flex items-center mt-1">
                   <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5 animate-pulse"></span>
                   <span className="text-[10px] font-bold text-green-600 uppercase tracking-widest">Active</span>
@@ -259,7 +259,7 @@ const ChatKitWrapper: React.FC = () => {
               <span className="text-[11px] text-slate-900 font-bold tracking-tight">Operational</span>
             </div>
             <div className="w-8 h-8 bg-slate-50 rounded-full border border-slate-100 flex items-center justify-center">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
             </div>
           </div>
         </header>
@@ -268,8 +268,8 @@ const ChatKitWrapper: React.FC = () => {
         <div className="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 custom-scrollbar bg-gradient-to-b from-white to-slate-50/30">
           {state.messages.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500">
-              <div className="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mb-6 ring-8 ring-blue-50/50">
-                <MessageSquare className="w-10 h-10 text-blue-600" />
+              <div className="w-20 h-20 bg-indigo-50 rounded-3xl flex items-center justify-center mb-6 ring-8 ring-indigo-50/50">
+                <MessageSquare className="w-10 h-10 text-indigo-600" />
               </div>
               <h3 className="text-2xl font-black text-slate-900 mb-2 tracking-tight">How can I help you today?</h3>
               <p className="text-slate-500 text-sm max-w-sm font-medium leading-relaxed">
@@ -280,7 +280,7 @@ const ChatKitWrapper: React.FC = () => {
                   <button 
                     key={suggestion}
                     onClick={() => setInputValue(suggestion)}
-                    className="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600 hover:border-blue-400 hover:text-blue-600 transition-all shadow-sm"
+                    className="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600 hover:border-indigo-400 hover:text-indigo-600 transition-all shadow-sm"
                   >
                     {suggestion}
                   </button>
@@ -297,9 +297,9 @@ const ChatKitWrapper: React.FC = () => {
                 >
                   <div className={`flex items-start max-w-[85%] ${message.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-1 ${
-                      message.sender === 'user' ? 'ml-3 bg-slate-100' : 'mr-3 bg-blue-100'
+                      message.sender === 'user' ? 'ml-3 bg-slate-100' : 'mr-3 bg-indigo-100'
                     }`}>
-                      {message.sender === 'user' ? <UserIcon className="w-4 h-4 text-slate-500" /> : <Bot className="w-4 h-4 text-blue-600" />}
+                      {message.sender === 'user' ? <UserIcon className="w-4 h-4 text-slate-500" /> : <Bot className="w-4 h-4 text-indigo-600" />}
                     </div>
                     
                     <div>
@@ -316,7 +316,7 @@ const ChatKitWrapper: React.FC = () => {
                         {message.actions_taken && message.actions_taken.length > 0 && (
                           <div className="mt-3 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
                             {message.actions_taken.map((action, i) => (
-                              <div key={i} className="flex items-center bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest ring-1 ring-blue-100">
+                              <div key={i} className="flex items-center bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest ring-1 ring-indigo-100">
                                 <CheckCircle2 className="w-3 h-3 mr-1" />
                                 {action.replace('Action: ', '')}
                               </div>
@@ -340,14 +340,14 @@ const ChatKitWrapper: React.FC = () => {
               {state.isLoading && (
                 <div className="flex justify-start mb-8 animate-in fade-in duration-300">
                   <div className="flex items-start max-w-[85%]">
-                    <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0 mt-1 mr-3 ring-4 ring-blue-50">
-                      <Bot className="w-4 h-4 text-blue-600" />
+                    <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1 mr-3 ring-4 ring-indigo-50">
+                      <Bot className="w-4 h-4 text-indigo-600" />
                     </div>
                     <div className="bg-white border border-slate-200/80 p-4 rounded-2xl rounded-tl-none shadow-sm">
                       <div className="flex space-x-1.5 h-5 items-center">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-duration:0.8s]"></div>
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-duration:0.8s] [animation-delay:0.2s]"></div>
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-duration:0.8s] [animation-delay:0.4s]"></div>
+                        <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce [animation-duration:0.8s]"></div>
+                        <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce [animation-duration:0.8s] [animation-delay:0.2s]"></div>
+                        <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce [animation-duration:0.8s] [animation-delay:0.4s]"></div>
                       </div>
                     </div>
                   </div>
@@ -362,7 +362,7 @@ const ChatKitWrapper: React.FC = () => {
         <div className="p-6 bg-white border-t border-slate-100/80">
           <div className="max-w-3xl mx-auto relative">
             <div className="relative flex items-end group">
-              <div className="absolute left-4 bottom-4 text-slate-400 group-focus-within:text-blue-500 transition-colors">
+              <div className="absolute left-4 bottom-4 text-slate-400 group-focus-within:text-indigo-500 transition-colors">
                 <Hash className="w-5 h-5" />
               </div>
               <textarea
@@ -370,7 +370,7 @@ const ChatKitWrapper: React.FC = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask your assistant anything..."
-                className="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-12 pr-16 py-4 resize-none max-h-32 text-[15px] font-medium focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/50 focus:bg-white outline-none transition-all placeholder:text-slate-400 custom-scrollbar shadow-inner"
+                className="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-12 pr-16 py-4 resize-none max-h-32 text-[15px] font-medium focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500/50 focus:bg-white outline-none transition-all placeholder:text-slate-400 custom-scrollbar shadow-inner"
                 rows={1}
                 disabled={state.isLoading}
               />
@@ -380,7 +380,7 @@ const ChatKitWrapper: React.FC = () => {
                 className={`absolute right-2 bottom-2 p-2.5 rounded-xl transition-all ${
                   state.isLoading || !inputValue.trim()
                     ? 'bg-slate-100 text-slate-300'
-                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-200 hover:scale-105 active:scale-95'
+                    : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-100 hover:scale-105 active:scale-95'
                 }`}
               >
                 <Send className="w-5 h-5" />

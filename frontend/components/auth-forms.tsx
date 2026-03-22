@@ -77,7 +77,7 @@ export function AuthForms({ onSuccess }: AuthFormsProps) {
           <Loader2 className="w-8 h-8 animate-spin" />
         </div>
         <h3 className="text-xl font-bold text-slate-900">Successfully Authenticated</h3>
-        <p className="text-slate-500 font-medium">Entering TaskFlow...</p>
+        <p className="text-slate-500 font-medium">Entering SyncronAI...</p>
       </div>
     )
   }

@@ -6,8 +6,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Todo App',
-  description: 'A modern todo application built with Next.js',
+  title: 'SyncronAI - Next Generation Task Management',
+  description: 'Organize, prioritize, and execute with intelligence using SyncronAI powered by Google Gemini.',
 }
 
 export default function RootLayout({

@@ -112,13 +112,13 @@ export function TaskList() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-1">
               <h2 className="text-3xl font-black text-slate-900 tracking-tight flex items-center gap-3">
-                Current Missions
-                <span className="text-[10px] bg-slate-100 text-slate-400 px-2 py-1 rounded-lg uppercase tracking-[0.2em] font-bold">
+                Active Objectives
+                <span className="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-1 rounded-lg uppercase tracking-[0.2em] font-bold">
                   {tasks.length} Total
                 </span>
               </h2>
               <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">
-                Manage your daily objectives
+                Master your productivity with SyncronAI
               </p>
             </div>
             

@@ -67,8 +67,8 @@ export const FloatingChat: React.FC<FloatingChatProps> = ({ user }) => {
                 <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900"></div>
               </div>
               <div>
-                <h3 className="text-lg font-black tracking-tight">TaskFlow AI</h3>
-                <p className="text-[10px] text-indigo-300 font-bold uppercase tracking-[0.2em]">Neural Intelligence</p>
+                <h3 className="text-lg font-black tracking-tight text-white">Syncron<span className="text-indigo-400">AI</span></h3>
+                <p className="text-[10px] text-indigo-300 font-bold uppercase tracking-[0.2em]">Gemini Powered Assistant</p>
               </div>
             </div>
             <button 

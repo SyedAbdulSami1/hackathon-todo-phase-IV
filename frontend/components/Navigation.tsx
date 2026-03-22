@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { MessageSquare, ListTodo, LogOut, User as UserIcon } from 'lucide-react';
+import { MessageSquare, ListTodo, LogOut, User as UserIcon, Command } from 'lucide-react';
 
 interface NavigationProps {
   user?: {
@@ -21,10 +21,10 @@ export const Navigation: React.FC<NavigationProps> = ({ user, onLogout }) => {
         <div className="flex items-center space-x-12">
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="w-10 h-10 bg-[#1D1D1F] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-all">
-              <ListTodo className="text-white w-6 h-6" />
+              <Command className="text-white w-6 h-6" />
             </div>
             <span className="text-2xl font-bold tracking-tight text-[#1D1D1F]">
-              Task<span className="text-indigo-600">Flow</span>
+              Syncron<span className="text-indigo-600">AI</span>
             </span>
           </Link>
           
