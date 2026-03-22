@@ -17,12 +17,8 @@ class ChatAgent:
         self.api_key = os.getenv("GOOGLE_API_KEY")
         self.base_url = os.getenv("AGENT_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
         
-        self.model_name = os.getenv("AGENT_MODEL_NAME", "gemini-flash-latest")
-        # Override broken model name from .env if present
-        if self.model_name == "gemini-1.5-flash":
-            print(f"DEBUG: Overriding gemini-1.5-flash with gemini-flash-latest for compatibility")
-            self.model_name = "gemini-flash-latest"
-            
+        self.model_name = os.getenv("AGENT_MODEL_NAME", "gemini-1.5-flash")
+        
         print(f"--- ChatAgent Startup ---")
         print(f"Model: {self.model_name}")
         print(f"Base URL: {self.base_url}")
@@ -136,8 +132,17 @@ class ChatAgent:
         except Exception as e:
             import traceback
             traceback.print_exc()
+            
+            error_msg = str(e)
+            if "429" in error_msg or "quota" in error_msg.lower():
+                return {
+                    "response": "I'm sorry, but I've reached my AI request limit (Quota Exceeded). Please wait a few minutes and try again! (This usually happens on free API keys).",
+                    "tool_calls": [],
+                    "actions_taken": ["Quota Error Handling"]
+                }
+                
             return {
-                "response": f"Sorry, I encountered an error: {str(e)}",
+                "response": f"Sorry, I encountered an error: {error_msg}",
                 "tool_calls": [],
                 "actions_taken": ["Error handling"]
             }
