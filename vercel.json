@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/**/*.py": {
+      "runtime": "@vercel/python"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/:path*",
@@ -6,6 +11,6 @@
     }
   ],
   "env": {
-    "BUILD_TRIGGER": "2026-03-22-v5"
+    "BUILD_TRIGGER": "2026-03-22-v6"
   }
 }
