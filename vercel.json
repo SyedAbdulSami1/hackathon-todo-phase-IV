@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "package.json",
+      "src": "frontend/package.json",
       "use": "@vercel/next"
     },
     {
@@ -14,5 +14,8 @@
       "source": "/api/:path*",
       "destination": "api/index.py"
     }
-  ]
+  ],
+  "env": {
+    "BUILD_TRIGGER": "2026-03-22-v4"
+  }
 }
