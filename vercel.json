@@ -1,21 +1,11 @@
 {
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/next"
-    },
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "api/index.py"
+      "destination": "/api/index.py"
     }
   ],
   "env": {
-    "BUILD_TRIGGER": "2026-03-22-v4"
+    "BUILD_TRIGGER": "2026-03-22-v5"
   }
 }
