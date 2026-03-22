@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npx next build frontend && mv frontend/.next .next && (mv frontend/public public || true)"
+    "build": "cd frontend && npm install && npm run build && cd .. && mv frontend/.next .next && (mv frontend/public public || true)"
   },
   "dependencies": {
     "next": "^14.0.0",
