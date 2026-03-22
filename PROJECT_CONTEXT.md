@@ -4,6 +4,7 @@
 - **Phase:** IV (Local Kubernetes Deployment) - **COMPLETED**
 - **Completed:** I (Console), II (Web), III (Chatbot), IV (K8s Deployment)
 - **Goal:** Deploy Phase III on Minikube using Helm & Docker. ✅
+- **Active Issue**: AI Chatbot 404 Error on Vercel (gemini-1.5-flash deprecated) - **FIXED** ✅
 
 ## ARCHITECTURE (DO NOT CHANGE)
 - **Frontend:** Next.js 16+ (Phase II/III)
@@ -29,6 +30,7 @@
 - **Helm Release:** `todo-app` (namespace: todo-app)
 - **Backend Replicas:** 2 (as per spec)
 - **Frontend Replicas:** 2
+- **AI Model:** `gemini-2.5-flash` (updated from deprecated `gemini-1.5-flash`)
 
 ## TASK TRACKER (Phase IV)
 - [x] Dockerfile (Backend/Frontend)

@@ -105,7 +105,7 @@ backend:
 
     # AI Chatbot configuration
     GOOGLE_API_KEY: "${GOOGLE_API_KEY}"
-    AGENT_MODEL_NAME: "gemini-1.5-flash"
+    AGENT_MODEL_NAME: "gemini-2.5-flash"
     AGENT_PROVIDER: "google"
     AGENT_TEMPERATURE: "0.7"
     ENABLE_MCP_TOOLS: "true"
@@ -142,7 +142,7 @@ chatAgent:
   environment:
     # Inherits all backend environment variables
     AGENT_ENABLED: "true"
-    AGENT_MODEL_NAME: "gemini-1.5-flash"
+    AGENT_MODEL_NAME: "gemini-2.5-flash"
     AGENT_PROVIDER: "google"
     AGENT_TEMPERATURE: "0.7"
     ENABLE_MCP_TOOLS: "true"

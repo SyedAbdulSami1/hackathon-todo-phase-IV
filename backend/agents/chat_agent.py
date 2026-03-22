@@ -12,13 +12,14 @@ class ChatAgent:
 
     def __init__(self, config: Optional[AgentConfig] = None):
         self.config = config or AgentConfig()
-        
+
         # Google's OpenAI-compatible Base URL MUST have the trailing slash
         self.api_key = os.getenv("GOOGLE_API_KEY")
         self.base_url = os.getenv("AGENT_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
-        
-        self.model_name = os.getenv("AGENT_MODEL_NAME", "gemini-1.5-flash")
-        
+
+        # Updated from gemini-1.5-flash (deprecated) to gemini-2.5-flash (stable)
+        self.model_name = os.getenv("AGENT_MODEL_NAME", "gemini-2.5-flash")
+
         print(f"--- ChatAgent Startup ---")
         print(f"Model: {self.model_name}")
         print(f"Base URL: {self.base_url}")

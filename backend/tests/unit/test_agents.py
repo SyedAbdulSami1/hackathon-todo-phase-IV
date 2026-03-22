@@ -30,9 +30,10 @@ def test_chat_agent_initialization(mock_openai):
     """Test ChatAgent initialization."""
     config = AgentConfig()
     agent = ChatAgent(config)
-    
+
     assert agent.config == config
-    assert agent.model_name in ["gemini-1.5-flash", "gemini-flash-latest", config.model_name]
+    # Updated from gemini-1.5-flash (deprecated) to gemini-2.5-flash
+    assert agent.model_name in ["gemini-2.5-flash", "gemini-3-flash", config.model_name]
     mock_openai.assert_called_once()
 
 
