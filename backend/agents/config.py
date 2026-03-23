@@ -8,7 +8,8 @@ class AgentConfig:
     """Configuration class for the AI agent."""
 
     def __init__(self):
-        self.model_name = os.getenv("AGENT_MODEL_NAME", "gpt-4")
+        # Updated default from gemini-1.5-flash (deprecated) to gemini-2.5-flash
+        self.model_name = os.getenv("AGENT_MODEL_NAME", "gemini-2.5-flash")
         self.temperature = float(os.getenv("AGENT_TEMPERATURE", "0.7"))
         self.max_tokens = int(os.getenv("AGENT_MAX_TOKENS", "1000"))
         self.api_key = os.getenv("OPENAI_API_KEY") or os.getenv("ANTHROPIC_API_KEY")
